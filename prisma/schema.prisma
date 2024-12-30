@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -14,14 +8,13 @@ datasource db {
 }
 
 model User {
-  id              String            @id @default(cuid())
-  email           String            @unique
-  name            String
-  password        String
-  image           String
-  createdAt       DateTime          @default(now())
-  updatedAt       DateTime          @updatedAt
-  QuestionAttempt QuestionAttempt[]
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  password  String
+  image     String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model UserSettings {
@@ -34,125 +27,16 @@ model UserSettings {
 }
 
 model Class {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   className String
-  chapters  Chapter[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Exam {
-  id        String     @id @default(cuid())
+  id        String   @id @default(cuid())
   examName  String
   position  Int
-  Years     Years[]
-  Questions Question[]
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-}
-
-model Years {
-  id            String     @id @default(cuid())
-  yearName      String
-  yearShortName String
-  examId        String
-  isVisible     Boolean
-  exam          Exam       @relation(fields: [examId], references: [id])
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  Question      Question[]
-}
-
-model Subject {
-  id            String     @id @default(cuid())
-  subjectName   String
-  shortName     String
-  units         Unit[]
-  chapters      Chapter[]
-  questionCount Int        @default(0)
-  createdAt     DateTime   @default(now())
-  updatedAt     DateTime   @updatedAt
-  Questions     Question[]
-}
-
-model Unit {
-  id            String    @id @default(cuid())
-  unitName      String
-  shortName     String
-  totalChapters Int
-  chapters      Chapter[]
-  isVisible     Boolean
-  subjectId     String
-  subject       Subject   @relation(fields: [subjectId], references: [id])
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
-
-  @@index([subjectId])
-}
-
-model Chapter {
-  id               String     @id @default(cuid())
-  chapterName      String
-  order            Int
-  priority         Int
-  importance       String
-  questionCount    Int        @default(0)
-  questions        Question[]
-  unitId           String
-  SyllabusCategory String
-  unit             Unit       @relation(fields: [unitId], references: [id])
-  subjectId        String
-  classId          String
-  class            Class      @relation(fields: [classId], references: [id])
-  subject          Subject    @relation(fields: [subjectId], references: [id])
-  createdAt        DateTime   @default(now())
-  updatedAt        DateTime   @updatedAt
-}
-
-model Question {
-  id                       String            @id @default(cuid())
-  level                    Int
-  questionStatement        String
-  questionImage            String?
-  Options                  Options[]
-  approximatedTimeRequired Int
-  isRemoved                Boolean
-  solution                 String
-  solutionImage            String?
-  QuestionAttempt          QuestionAttempt[]
-  yearsId                  String
-  chapterId                String
-  subjectId                String
-  Chapter                  Chapter           @relation(fields: [chapterId], references: [id])
-  Years                    Years             @relation(fields: [yearsId], references: [id])
-  subject                  Subject           @relation(fields: [subjectId], references: [id])
-  createdAt                DateTime          @default(now())
-  updatedAt                DateTime          @updatedAt
-  Exam                     Exam              @relation(fields: [examId], references: [id])
-  examId                   String
-}
-
-model Options {
-  id         String   @id @default(cuid())
-  text       String
-  image      String?
-  isCorrect  Boolean
-  questionId String
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-  Question   Question @relation(fields: [questionId], references: [id])
-
-  @@index([questionId])
-}
-
-model QuestionAttempt {
-  id          String   @id @default(cuid())
-  status      String // notAttempted, correct, incorrect
-  questionId  String
-  userId      String
-  attemptedAt DateTime @default(now())
-  Question    Question @relation(fields: [questionId], references: [id])
-  User        User     @relation(fields: [userId], references: [id])
-
-  @@index([userId, questionId])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
