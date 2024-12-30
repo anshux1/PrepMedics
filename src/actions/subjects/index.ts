@@ -1,4 +1,3 @@
-'use server';
+"use server"
 
-export const getSubjects = async () => {
-}
+export const getSubjects = async () => {}

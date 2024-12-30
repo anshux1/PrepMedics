@@ -1,6 +1,6 @@
+import { useId } from "react"
 
-import { useId } from 'react'
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils"
 
 interface GridPatternProps {
   width?: number
@@ -29,7 +29,7 @@ export function GridPattern({
     <svg
       aria-hidden="true"
       className={cn(
-        'pointer-events-none absolute inset-0 size-full fill-gray-400/30 stroke-gray-400/30',
+        "pointer-events-none absolute inset-0 size-full fill-gray-400/30 stroke-gray-400/30",
         className,
       )}
       {...props}
