@@ -1,9 +1,9 @@
 import React from "react"
 import Image from "next/image"
 
-import { DarkModeToggle } from "@/components/DarkModeToggle"
 import { Button } from "@/components/ui/button"
 import { GridPattern } from "@/components/ui/grid-pattern"
+import { DarkModeToggle } from "@/components/DarkModeToggle"
 
 export default function Hero() {
   return (

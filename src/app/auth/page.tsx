@@ -1,10 +1,10 @@
-import { signIn } from "next-auth/react"
 import { FcGoogle } from "react-icons/fc"
 
+import { signIn } from "@/lib/auth"
 import { Button } from "@/components/ui/button"
 import { AuthLogos } from "@/components/AuthLogos"
 
-export default function SignIn() {
+export default async function SignIn() {
   return (
     <div className="mx-auto flex h-screen max-w-7xl flex-col items-center justify-center">
       <h1 className="text-6xl font-extrabold">Welcome to PrepMedics</h1>
