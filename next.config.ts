@@ -5,10 +5,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "assets.aceternity.com/",
-        port: "",
-        pathname: "/demos",
-        search: "",
+        hostname: "prepmedics.blob.core.windows.net",
       },
     ],
   },

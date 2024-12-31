@@ -1,12 +1,14 @@
 import React from "react"
 import Image from "next/image"
 
-import { Button } from "../ui/button"
-import { GridPattern } from "../ui/grid-pattern"
+import { DarkModeToggle } from "@/components/DarkModeToggle"
+import { Button } from "@/components/ui/button"
+import { GridPattern } from "@/components/ui/grid-pattern"
 
 export default function Hero() {
   return (
     <div className="relative h-screen rounded-3xl p-6">
+      <DarkModeToggle />
       <Image
         src="LandingLeft.svg"
         alt="LandingLeftSvg"
