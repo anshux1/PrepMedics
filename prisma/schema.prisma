@@ -48,15 +48,6 @@ model VerificationToken {
   @@id([identifier, token])
 }
 
-model UserSettings {
-  id                     String   @id @default(cuid())
-  devices                String[]
-  showAttemptInsightData Boolean  @default(true)
-  isProfileCompleted     Boolean
-  targetYear             String[]
-  targetExam             String[]
-}
-
 model Class {
   id        String   @id @default(cuid())
   className String
@@ -65,9 +56,36 @@ model Class {
 }
 
 model Exam {
-  id        String   @id @default(cuid())
+  id        String    @id @default(cuid())
+  examLogo  String
   examName  String
+  isVisible Boolean
   position  Int
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  subjects  Subject[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  Years     Years[]
+}
+
+model Years {
+  id            String   @id @default(cuid())
+  yearName      String
+  yearShortName String
+  examId        String
+  isVisible     Boolean
+  exam          Exam     @relation(fields: [examId], references: [id])
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model Subject {
+  id            String   @id @default(cuid())
+  subjectName   String
+  shortName     String
+  subjectImage  String
+  examId        String
+  exam          Exam     @relation(fields: [examId], references: [id])
+  questionCount Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

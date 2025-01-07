@@ -25,6 +25,7 @@ export default auth((req) => {
   if (!isPublicRoute && !isLoggedIn) {
     return NextResponse.redirect(new URL("/auth", nextUrl))
   }
+
   return NextResponse.next()
 })
 
